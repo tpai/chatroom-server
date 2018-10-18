@@ -1,0 +1,17 @@
+{
+  "name": "chatroom-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Tony Pai <tony77794@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-fileupload": "^1.0.0-alpha.1",
+    "mysql2": "^1.6.1",
+    "socket.io": "^2.1.1",
+    "uniqid": "^5.0.3"
+  }
+}
