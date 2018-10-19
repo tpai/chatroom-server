@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 'text',
     },
     channelId: { type: DataTypes.INTEGER },
-  });
+  }, { timestamps: false });
   sequelize.sync().then(() => {
     Messages.findOrCreate({
       where: {
