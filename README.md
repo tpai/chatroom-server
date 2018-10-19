@@ -17,22 +17,14 @@ docker run --name mysql \
   -d mysql:5
 ```
 
-Create table
-
-```sql
-use db;
-create table messages(
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  userId integer,
-  username text,
-  text text,
-  type enum('text', 'image') NOT NULL DEFAULT 'text',
-  channelId integer
-);
-```
-
-Install dependencies and launch server
+Install dependencies
 
 ```
-yarn && yarn start
+yarn
+```
+
+Sync database with ORM and launch server at port 3000
+
+```
+yarn start
 ```

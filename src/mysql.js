@@ -1,10 +1,16 @@
 const mysql      = require('mysql2');
+const {
+  DB_HOST,
+  DB_NAME,
+  DB_USER,
+  DB_PASS,
+} = require('../db.config');
 const pool = mysql.createPool({
   connectionLimit : 10,
-  host     : 'localhost',
-  user     : 'user',
-  password : 'pass',
-  database : 'db',
+  host     : DB_HOST,
+  database : DB_NAME,
+  user     : DB_USER,
+  password : DB_PASS,
 });
 
 pool.query('SELECT 1 + 1 AS solution', (error, results, fields) => {
