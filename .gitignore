@@ -80,3 +80,6 @@ mysql/
 
 # MAC hidden file
 .DS_Store
+
+# Environment variables
+.env
