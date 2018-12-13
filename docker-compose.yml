@@ -13,6 +13,7 @@ services:
       test: ['CMD-SHELL', 'mysqladmin -h localhost -u root -padmin ping --silent']
       timeout: 10s
       retries: 3
+    command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
   app:
     depends_on:
       db:

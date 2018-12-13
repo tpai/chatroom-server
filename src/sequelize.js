@@ -13,6 +13,10 @@ const sequelize = new Sequelize(
   DB_PASS,
   {
     dialect: 'mysql',
+    charset: 'utf8mb4',
+    dialectOptions: {
+      collate: 'utf8mb4_unicode_ci'
+    },
     pool: {
       max: 10,
       min: 0,

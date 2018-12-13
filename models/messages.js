@@ -1,11 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
   const Messages = sequelize.define('messages', {
     /*
-      create table messages(
+      CREATE TABLE messages(
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
         userId integer,
         username text,
-        text text,
+        text text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci,
         type enum('text', 'image') NOT NULL DEFAULT 'text',
         channelId integer
       );
@@ -25,7 +25,11 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: 'text',
     },
     channelId: { type: DataTypes.INTEGER },
-  }, { timestamps: false });
+  }, {
+    charset: 'utf8mb4',
+    collate: 'utf8mb4_general_ci',
+    timestamps: false,
+  });
   sequelize.sync().then(() => {
     Messages.findOrCreate({
       where: {
