@@ -4,7 +4,15 @@ This server contains image upload API and real-time socket.
 
 ## Usage
 
-Create mysql docker container
+Use docker compose to launch the service
+
+```
+docker-compose up
+```
+
+### Development
+
+Create mysql instance
 
 ```
 docker run --name mysql \
@@ -23,7 +31,7 @@ Install dependencies
 yarn
 ```
 
-Sync database with ORM and launch server at port 3000
+Start developing at `*:3333`
 
 ```
 yarn start

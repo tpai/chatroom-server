@@ -1,0 +1,30 @@
+version: '2.3'
+
+services:
+  db:
+    image: mysql:5
+    restart: always
+    environment:
+      MYSQL_DATABASE: db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+      MYSQL_ROOT_PASSWORD: admin
+    healthcheck:
+      test: ['CMD-SHELL', 'mysqladmin -h localhost -u root -padmin ping --silent']
+      timeout: 10s
+      retries: 3
+  app:
+    depends_on:
+      db:
+        condition: service_healthy
+    links:
+      - db
+    build: .
+    restart: always
+    ports:
+      - '3333:3333'
+    environment:
+      DB_HOST: db
+      DB_NAME: db
+      DB_USER: user
+      DB_PASS: pass
