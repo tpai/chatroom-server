@@ -5,30 +5,30 @@ const {
 } = require('./socket-helpers');
 
 const sockets = (io) => (socket) => {
-  console.log('a user connected');
+  console.log('User connected');
   socket.on('joinChannel', async (data) => {
     try {
       await joinChannel(data, socket, io);
     } catch (e) {
-      socket.emit('Error', e);
+      socket.emit('error', e);
     }
   });
   socket.on('leaveChannel', async (data) => {
     try {
       await leaveChannel(data, socket, io);
     } catch (e) {
-      socket.emit('Error', e);
+      socket.emit('error', e);
     }
   });
   socket.on('sendMessage', async (data) => {
     try {
       await sendMessage(data, socket, io);
     } catch (e) {
-      socket.emit('Error', e);
+      socket.emit('error', e);
     }
   });
   socket.on('disconnect', () => {
-    console.log('user disconnected');
+    console.log('User disconnected');
   });
 };
 
