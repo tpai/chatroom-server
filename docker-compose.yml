@@ -1,7 +1,46 @@
-version: '2.3'
+version: '3.5'
 
 services:
+  net:
+    image: alpine:3.7
+    network_mode: bridge
+    ports:
+      - 3333:3333
+      - 8080:8080
+    command: tail -f /dev/null
+    restart: always
+  app:
+    image: tonypai/chatroom
+    network_mode: service:net
+  api:
+    network_mode: service:net
+    depends_on:
+      - db
+      - app
+    build: .
+    environment:
+      DB_HOST: 0.0.0.0
+      DB_NAME: db
+      DB_USER: user
+      DB_PASS: pass
+    restart: always
+  api-dev:
+    image: node:8-alpine
+    network_mode: service:net
+    depends_on:
+      - db
+      - app
+    volumes:
+      - "$PWD:/data"
+    working_dir: /data
+    environment:
+      DB_HOST: 0.0.0.0
+      DB_NAME: db
+      DB_USER: user
+      DB_PASS: pass
+    command: yarn dev
   db:
+    network_mode: service:net
     image: mysql:5
     restart: always
     environment:
@@ -14,18 +53,3 @@ services:
       timeout: 10s
       retries: 3
     command: ['--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
-  app:
-    depends_on:
-      db:
-        condition: service_healthy
-    links:
-      - db
-    build: .
-    restart: always
-    ports:
-      - '3333:3333'
-    environment:
-      DB_HOST: db
-      DB_NAME: db
-      DB_USER: user
-      DB_PASS: pass
