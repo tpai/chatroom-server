@@ -5,13 +5,15 @@
   "author": "Tony Pai <tony77794@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "dependencies": {
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "express-fileupload": "^1.0.0-alpha.1",
     "mysql2": "^1.6.1",
+    "nodemon": "^1.18.11",
     "sequelize": "^5.7.3",
     "socket.io": "^2.1.1",
     "uniqid": "^5.0.3"
