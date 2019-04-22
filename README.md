@@ -4,35 +4,10 @@ This server contains image upload API and real-time socket.
 
 ## Usage
 
-Use docker compose to launch the service
+Start both chatroom web and API server in development mode.
 
 ```
-docker-compose up
+docker-compose up api-dev
 ```
 
-### Development
-
-Create mysql instance
-
-```
-docker run --name mysql \
-  -v $(pwd)/mysql:/var/lib/mysql \
-  -e MYSQL_DATABASE=db \
-  -e MYSQL_USER=user \
-  -e MYSQL_PASSWORD=pass \
-  -e MYSQL_ROOT_PASSWORD=admin \
-  -p 3306:3306 \
-  -d mysql:5
-```
-
-Install dependencies
-
-```
-yarn
-```
-
-Start developing at `*:3333`
-
-```
-yarn start
-```
+Now `api-dev` is using `nodemon` to watch code changes, and `app` is serving frontend part at port 8080.
