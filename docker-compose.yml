@@ -10,7 +10,7 @@ services:
     command: tail -f /dev/null
     restart: always
   app:
-    image: tonypai/chatroom
+    image: tonypai/chatroom:latest
     network_mode: service:net
   api:
     network_mode: service:net
